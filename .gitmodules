@@ -1,3 +1,3 @@
 [submodule "my-sanity-project"]
-    path = my-sanity-project
-    url = https://github.com/AlexSp1lls/atlasonline.tech/blob/main/sanity
+	path = my-sanity-project
+	url = https://github.com/AlexSp1lls/atlasonline.git
