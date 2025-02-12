@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Portfolio of Atlas Vasquez Spillers - Game Developer | Unity | Unreal | Sound Design" />
+    <meta name="author" content="Atlas Vasquez Spillers" />
+    <title>Atlas Vasquez Spillers - Game Developer Portfolio</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/ScrollTrigger.min.js"></script>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- Core Theme CSS -->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body class="d-flex flex-column h-100 bg-dark text-light">
+<main class="flex-shrink-0">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black py-3">
+        <div class="container px-5">
+            <a class="navbar-brand fw-bold text-primary" href="index.html">Atlas Vasquez Spillers</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto fw-bold">
+                    <li class="nav-item"><a class="nav-link text-light" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="resume.html">Resume</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="text-center py-5 bg-gradient-primary-to-secondary">
+        <div class="container px-5">
+            <h1 class="display-3 fw-bold hero-title">Creating Immersive Gaming Experiences</h1>
+            <p class="lead hero-subtitle">Game Developer | Unity | Unreal Engine | Sound Designer</p>
+            <a class="btn btn-primary btn-lg px-4 mt-3 hero-btn" href="projects.html">View My Games</a>
+        </div>
+    </header>
+
+    <!-- Experience Section -->
+    <section class="container px-5 my-5">
+        <h2 class="text-primary fw-bold fade-in">Experience</h2>
+
+        <!-- Experience Card 1 -->
+        <div class="card bg-dark text-light shadow border-0 rounded-4 my-4 experience-card">
+            <div class="card-body">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-4">
+                        <h4 class="text-white">2022 - Present</h4>
+                        <p class="fw-bold">Game Developer - CatNap Studios</p>
+                    </div>
+                    <div class="col-lg-8">
+                        <p>Developed multiple Unity projects, integrating <strong>Ink dialogue systems, parkour mechanics, AI behavior, and physics-based gameplay</strong>.
+                            Designed immersive soundscapes and adaptive audio environments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience Card 2 -->
+        <div class="card bg-dark text-light shadow border-0 rounded-4 my-4 experience-card">
+            <div class="card-body">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-4">
+                        <h4 class="text-white">2019 - Present</h4>
+                        <p class="fw-bold">Sound Designer - Indie Projects</p>
+                    </div>
+                    <div class="col-lg-8">
+                        <p>Created custom soundtracks, ambient audio, and dynamic sound effects for multiple indie games. Utilized <strong>FMOD</strong> and <strong>Wwise</strong> for real-time audio mixing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="container px-5 my-5">
+        <h2 class="text-primary fw-bold fade-in">Skills</h2>
+        <div class="row row-cols-1 row-cols-md-3 text-center">
+            <div class="col mb-4"><div class="bg-light text-dark p-3 rounded-3 skill-box">Unity Engine</div></div>
+            <div class="col mb-4"><div class="bg-light text-dark p-3 rounded-3 skill-box">Unreal Engine (Blueprint & C++)</div></div>
+            <div class="col mb-4"><div class="bg-light text-dark p-3 rounded-3 skill-box">AI & Physics Programming</div></div>
+            <div class="col mb-4"><div class="bg-light text-dark p-3 rounded-3 skill-box">Game Audio & Sound Design</div></div>
+            <div class="col mb-4"><div class="bg-light text-dark p-3 rounded-3 skill-box">Shader & VFX Development</div></div>
+            <div class="col mb-4"><div class="bg-light text-dark p-3 rounded-3 skill-box">Multiplayer & Networking</div></div>
+        </div>
+    </section>
+</main>
+
+
+<!-- Game Container -->
+<div id="game-container" class="d-flex justify-content-center align-items-center py-5">
+    <div id="controls" class="bg-dark text-light p-4 rounded-4 shadow-lg mx-3 gsap-animate">
+        <h3 class="text-primary mb-3">Controls:</h3>
+        <ul>
+            <li><strong>A</strong>: Move Left</li>
+            <li><strong>D</strong>: Move Right</li>
+            <li><strong>S</strong>: Move Down</li>
+            <li><strong>Spacebar</strong>: Rotate</li>
+        </ul>
+    </div>
+
+    <div class="game-canvas-container position-relative gsap-animate">
+        <h2 class="text-primary fw-bold text-center mb-4">Play Tetris!</h2>
+        <p class="text-light text-center mb-5">A fun little break! Test your skills right here.</p>
+        <canvas id="tetrisCanvas" width="320" height="640" class="border border-light rounded-4"></canvas>
+    </div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="bg-black text-light py-4">
+    <div class="container text-center">
+        <p class="small">&copy; 2025 Atlas Vasquez Spillers | Game Developer</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- GSAP Animation Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("tetrisCanvas");
+        const ctx = canvas.getContext("2d");
+        let score = 0;
+        const ROWS = 20, COLS = 10, SIZE = 32;
+        let board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+
+        // Define colors for each Tetrimino shape
+        const COLORS = {
+            I: 'cyan',
+            O: 'yellow',
+            T: 'purple',
+            S: 'green',
+            Z: 'red',
+            J: 'blue',
+            L: 'orange'
+        };
+
+        // Tetrimino Shapes (7 Pieces)
+        const PIECES = [
+            { shape: [[1, 1, 1], [0, 1, 0]], color: COLORS.T }, // T
+            { shape: [[1, 1, 1, 1]], color: COLORS.I }, // I
+            { shape: [[1, 1], [1, 1]], color: COLORS.O }, // O
+            { shape: [[1, 1, 0], [0, 1, 1]], color: COLORS.Z }, // Z
+            { shape: [[0, 1, 1], [1, 1, 0]], color: COLORS.S }, // S
+            { shape: [[1, 1, 1], [1, 0, 0]], color: COLORS.J }, // J
+            { shape: [[1, 1, 1], [0, 0, 1]], color: COLORS.L } // L
+        ];
+
+
+        let current = { shape: PIECES[Math.floor(Math.random() * PIECES.length)].shape, x: 3, y: 0, offsetY: 0 };
+        console.log(current.shape); // Log the shape of the current Tetrimino
+
+
+        function drawBlock(x, y, color, isShadow = false) {
+            ctx.fillStyle = isShadow ? 'rgba(0, 0, 0, 0.3)' : color;
+            ctx.fillRect(x * SIZE, y * SIZE, SIZE, SIZE);
+            ctx.strokeStyle = "black";
+            ctx.strokeRect(x * SIZE, y * SIZE, SIZE, SIZE);
+        }
+
+        function drawBoard() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            console.log("Drawing the board...");
+
+            // Draw the filled blocks in the board
+            board.forEach((row, y) => row.forEach((value, x) => {
+                if (value !== 0) drawBlock(x, y, value); // Draw the blocks with the correct color
+            }));
+
+            // Draw the shadow and active Tetrimino piece
+            current.shape.forEach((row, dy) => row.forEach((value, dx) => {
+                if (value) {
+                    // Draw shadow (slightly offset beneath the piece)
+                    drawBlock(current.x + dx, current.y + dy + current.offsetY, current.color, true);
+                    // Draw the actual Tetrimino block
+                    drawBlock(current.x + dx, current.y + dy + current.offsetY, current.color);
+                }
+            }));
+
+            // Display the score
+            ctx.fillStyle = "white";
+            ctx.font = "20px Arial";
+            ctx.fillText("Score: " + score, 10, 20);
+        }
+
+        function drop() {
+            current.offsetY += 1; // Move the piece down by 1 unit
+
+            // If collision occurs, stop and lock the piece
+            if (collision()) {
+                current.offsetY -= 1; // Undo the move
+                lockPiece();  // Lock the piece into the board
+
+                // Clear lines if necessary
+                if (clearLines()) {
+                    score += 100; // Award points for clearing a line
+                }
+
+                // Spawn a new piece at the top
+                current = { shape: PIECES[Math.floor(Math.random() * PIECES.length)].shape, x: 3, y: 0, offsetY: 0 };
+
+                // Check if new piece immediately collides, indicating game over
+                if (collision()) {
+                    console.log("Game Over!");
+                    board = Array.from({ length: ROWS }, () => Array(COLS).fill(0)); // Reset the board
+                    score = 0; // Reset score
+                }
+            }
+        }
+
+        function lockPiece() {
+            current.shape.forEach((row, dy) => {
+                row.forEach((value, dx) => {
+                    if (value) {
+                        const boardY = current.y + dy + current.offsetY;
+                        const boardX = current.x + dx;
+                        if (boardY >= 0 && boardY < ROWS && boardX >= 0 && boardX < COLS) {
+                            board[boardY][boardX] = current.color; // Lock the piece's color into the board
+                        }
+                    }
+                });
+            });
+        }
+
+        function collision() {
+            // Check if the piece is out of bounds or collides with existing blocks
+            return current.shape.some((row, dy) => {
+                return row.some((value, dx) => {
+                    if (value) {
+                        const newY = current.y + dy + current.offsetY;
+                        const newX = current.x + dx;
+                        return (
+                            // Check if the new position is below the board
+                            newY >= ROWS ||
+                            newX < 0 ||
+                            newX >= COLS ||
+                            board[newY] && board[newY][newX] !== 0 // Check if it collides with an existing piece
+                        );
+                    }
+                    return false;
+                });
+            });
+        }
+
+
+
+
+        // Handle key events for movement and rotation
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "a") move(-1);
+            if (e.key === "d") move(1);
+            if (e.key === "s") drop();
+            if (e.key === " ") rotate(); // Rotate on spacebar press
+            drawBoard();
+        });
+
+        // Game loop to update and draw the board
+        setInterval(() => {
+            drop();
+            drawBoard();
+            console.log("Game loop running...");
+        }, 500);
+
+        // Function to move Tetriminos (left/right)
+        function move(dir) {
+            current.x += dir;
+            if (collision()) current.x -= dir; // Prevent moving into walls
+        }
+
+        // Function to rotate the current Tetrimino
+        function rotate() {
+            const newShape = current.shape[0].map((_, i) => current.shape.map(row => row[i])).reverse();
+            const originalShape = current.shape;
+            current.shape = newShape;
+            if (collision()) {
+                current.shape = originalShape; // Revert if collision occurs
+            }
+        }
+
+        // Line clearing logic
+        function clearLines() {
+            for (let y = ROWS - 1; y >= 0; y--) {
+                if (board[y].every(cell => cell !== 0)) {
+                    board.splice(y, 1); // Remove the line
+                    board.unshift(Array(COLS).fill(0)); // Add a new empty line at the top
+                    return true;
+                }
+            }
+            return false;
+        }
+    });
+
+</script>
+
+<!-- Custom GSAP Animations -->
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Animate controls box and canvas with fade-in effect
+        gsap.from(".gsap-animate", {
+            duration: 1.5,
+            opacity: 0,
+            y: 50,
+            stagger: 0.3,
+            ease: "power3.out"
+        });
+
+        // Animate hover effect on controls
+        gsap.utils.toArray("#controls ul li").forEach((li) => {
+            li.addEventListener("mouseenter", () => {
+                gsap.to(li, { scale: 1.1, duration: 0.2, backgroundColor: "#444", color: "#fff" });
+            });
+            li.addEventListener("mouseleave", () => {
+                gsap.to(li, { scale: 1, duration: 0.2, backgroundColor: "transparent", color: "#fff" });
+            });
+        });
+
+
+    });
+    // Hero Section Animation
+    gsap.from(".hero-title", { duration: 1.5, y: -50, opacity: 0, ease: "power4.out" });
+    gsap.from(".hero-subtitle", { duration: 1.2, y: 20, opacity: 0, delay: 0.5, ease: "power4.out" });
+    gsap.from(".hero-btn", { duration: 1, scale: 0.5, opacity: 0, delay: 1, ease: "back.out(1.7)" });
+
+    // Fade-in Animation for Sections
+    gsap.from(".fade-in", {
+        scrollTrigger: { trigger: ".fade-in", start: "top 90%" },
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        ease: "power3.out"
+    });
+
+    // Experience Section Animation
+    gsap.from(".experience-card", {
+        scrollTrigger: { trigger: ".experience-card", start: "top 90%" },
+        duration: 1,
+        y: 30,
+        opacity: 0,
+        stagger: 0.2
+    });
+    gsap.from("#tetrisCanvas", {
+        scrollTrigger: { trigger: "#tetrisCanvas", start: "top 90%" },
+        duration: 1.5,
+        scale: 0.8,
+        opacity: 0,
+        ease: "elastic.out(1, 0.5)"
+    });
+
+
+
+    // Skills Hover Effect
+    gsap.utils.toArray(".skill-box").forEach((box) => {
+        box.addEventListener("mouseenter", () => gsap.to(box, { scale: 1.1, duration: 0.3 }));
+        box.addEventListener("mouseleave", () => gsap.to(box, { scale: 1, duration: 0.3 }));
+    });
+</script>
+</body>
+</html>

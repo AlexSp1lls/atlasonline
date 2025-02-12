@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/ScrollTrigger.min.js"></script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tetris Test</title>
+  <style>
+    #tetrisCanvas {
+      display: block;
+
+      margin: 20px auto;
+      border: 2px solid black;
+      background-color: #222;
+    }
+  </style>
+</head>
+<body>
+<canvas id="tetrisCanvas" width="320" height="640"></canvas> <!-- width: 10 * 32, height: 20 * 32 -->
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.getElementById("tetrisCanvas");
+    const ctx = canvas.getContext("2d");
+    let score = 0;
+    const ROWS = 20, COLS = 10, SIZE = 32;
+    let board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+    let gameOver = false;
+
+    // Define colors for each Tetrimino shape
+    const COLORS = {
+      I: 'cyan',
+      O: 'yellow',
+      T: 'purple',
+      S: 'green',
+      Z: 'red',
+      J: 'blue',
+      L: 'orange'
+    };
+
+    // Tetrimino Shapes (7 Pieces)
+    const PIECES = [
+      { shape: [[1, 1, 1], [0, 1, 0]], color: COLORS.T }, // T
+      { shape: [[1, 1, 1, 1]], color: COLORS.I }, // I
+      { shape: [[1, 1], [1, 1]], color: COLORS.O }, // O
+      { shape: [[1, 1, 0], [0, 1, 1]], color: COLORS.Z }, // Z
+      { shape: [[0, 1, 1], [1, 1, 0]], color: COLORS.S }, // S
+      { shape: [[1, 1, 1], [1, 0, 0]], color: COLORS.J }, // J
+      { shape: [[1, 1, 1], [0, 0, 1]], color: COLORS.L } // L
+    ];
+
+    let current = { shape: PIECES[Math.floor(Math.random() * PIECES.length)].shape, x: 3, y: 0, offsetY: 0 };
+    console.log(current.shape); // Log the shape of the current Tetrimino
+
+    function drawBlock(x, y, color, isShadow = false) {
+      ctx.fillStyle = isShadow ? 'rgba(0, 0, 0, 0.3)' : color;
+      ctx.fillRect(x * SIZE, y * SIZE, SIZE, SIZE);
+      ctx.strokeStyle = "black";
+      ctx.strokeRect(x * SIZE, y * SIZE, SIZE, SIZE);
+    }
+
+    function drawBoard() {
+      console.log("Drawing the board...");
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw the filled blocks in the board
+      board.forEach((row, y) => row.forEach((value, x) => {
+        if (value !== 0) {
+          drawBlock(x, y, value); // Draw the blocks with the correct color
+        }
+      }));
+
+      // Draw the shadow and active Tetrimino piece
+      current.shape.forEach((row, dy) => row.forEach((value, dx) => {
+        if (value) {
+          drawBlock(current.x + dx, current.y + dy + current.offsetY, current.color, true);  // shadow
+          drawBlock(current.x + dx, current.y + dy + current.offsetY, current.color); // actual piece
+        }
+      }));
+
+      // Display the score
+      console.log("Displaying score");
+      ctx.fillStyle = "white";
+      ctx.font = "20px Arial";
+      ctx.fillText("Score: " + score, 10, 20);
+
+      // Display Game Over message if the game is over
+      if (gameOver) {
+        console.log("Game Over!");
+        ctx.fillStyle = "red";
+        ctx.font = "40px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2);
+        ctx.font = "20px Arial";
+        ctx.fillText("Press 'R' to restart", canvas.width / 2, canvas.height / 2 + 40);
+      }
+    }
+
+    function drop() {
+      if (gameOver) return; // Prevent dropping pieces after game over
+
+      current.offsetY += 1; // Move the piece down by 1 unit
+
+      // If collision occurs, stop and lock the piece
+      if (collision()) {
+        current.offsetY -= 1; // Undo the move
+        lockPiece();  // Lock the piece into the board
+        if (current.y === 0 && collision()) {
+          gameOver = true; // Set game over when a piece can't spawn at the top
+        }
+        // Clear lines if necessary
+        if (clearLines()) {
+          score += 100; // Award points for clearing a line
+        }
+
+        // Spawn a new piece at the top
+        current = { shape: PIECES[Math.floor(Math.random() * PIECES.length)].shape, x: 3, y: 0, offsetY: 0 };
+
+        // Check if new piece immediately collides, indicating game over
+        if (collision()) {
+          console.log("Game Over!");
+          board = Array.from({ length: ROWS }, () => Array(COLS).fill(0)); // Reset the board
+          score = 0; // Reset score
+          gameOver = true; // Set game over to true
+        }
+      }
+    }
+
+    function lockPiece() {
+      current.shape.forEach((row, dy) => {
+        row.forEach((value, dx) => {
+          if (value) {
+            const boardY = current.y + dy + current.offsetY;
+            const boardX = current.x + dx;
+            if (boardY >= 0 && boardY < ROWS && boardX >= 0 && boardX < COLS) {
+              board[boardY][boardX] = current.color; // Lock the piece's color into the board
+            }
+          }
+        });
+      });
+    }
+
+    function collision() {
+      // Check if the piece is out of bounds or collides with existing blocks
+      return current.shape.some((row, dy) => {
+        return row.some((value, dx) => {
+          if (value) {
+            const newY = current.y + dy + current.offsetY;
+            const newX = current.x + dx;
+            return (
+                    // Check if the new position is below the board
+                    newY >= ROWS ||
+                    newX < 0 ||
+                    newX >= COLS ||
+                    board[newY] && board[newY][newX] !== 0 // Check if it collides with an existing piece
+            );
+          }
+          return false;
+        });
+      });
+    }
+
+    // Handle key events
+    document.addEventListener("keydown", (e) => {
+      if (gameOver && e.key === "r") {
+        // Restart the game when 'R' is pressed
+        gameOver = false;
+        score = 0;
+        board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+        current = { shape: PIECES[Math.floor(Math.random() * PIECES.length)].shape, x: 3, y: 0, offsetY: 0 };
+      }
+      if (!gameOver) {
+        if (e.key === "ArrowLeft") move(-1);
+        if (e.key === "ArrowRight") move(1);
+        if (e.key === "ArrowDown") drop();
+        if (e.key === " ") rotate(); // Rotate on spacebar press
+      }
+    });
+
+
+    // Game loop to update and draw the board
+    setInterval(() => {
+      drop();
+      drawBoard();
+    }, 500);
+
+
+    // Function to move Tetriminos (left/right)
+    function move(dir) {
+      current.x += dir;
+      if (collision()) current.x -= dir; // Prevent moving into walls
+    }
+
+    // Function to rotate the current Tetrimino
+    function rotate() {
+      const newShape = current.shape[0].map((_, i) => current.shape.map(row => row[i])).reverse();
+      const originalShape = current.shape;
+      current.shape = newShape;
+      if (collision()) {
+        current.shape = originalShape; // Revert if collision occurs
+      }
+    }
+
+    // Line clearing logic
+    function clearLines() {
+      for (let y = ROWS - 1; y >= 0; y--) {
+        if (board[y].every(cell => cell !== 0)) {
+          board.splice(y, 1); // Remove the line
+          board.unshift(Array(COLS).fill(0)); // Add a new empty line at the top
+          return true;
+        }
+      }
+      return false;
+    }
+  });
+
+
+
+
+  // Handle key events for movement and rotation
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") move(-1);
+      if (e.key === "ArrowRight") move(1);
+      if (e.key === "ArrowDown") drop();
+      if (e.key === " ") rotate(); // Rotate on spacebar press
+      if (e.key === "r" && gameOver) restartGame(); // Restart the game if 'R' is pressed during game over
+      drawBoard();
+    });
+    function restartGame() {
+      gameOver = false;
+      score = 0;
+      board = Array.from({ length: ROWS }, () => Array(COLS).fill(0)); // Reset the board
+      current = { shape: PIECES[Math.floor(Math.random() * PIECES.length)], x: 3, y: 0, offsetY: 0 }; // Spawn a new piece
+      requestAnimationFrame(gameLoop); // Restart the game loop
+    }
+    // Game loop to update and draw the board
+    setInterval(() => {
+      drop();
+      drawBoard();
+      console.log("Game loop running...");
+    }, 500);
+
+    // Function to move Tetriminos (left/right)
+    function move(dir) {
+      current.x += dir;
+      if (collision()) current.x -= dir; // Prevent moving into walls
+    }
+
+    // Function to rotate the current Tetrimino
+    function rotate() {
+      const newShape = current.shape[0].map((_, i) => current.shape.map(row => row[i])).reverse();
+      const originalShape = current.shape;
+      current.shape = newShape;
+      if (collision()) {
+        current.shape = originalShape; // Revert if collision occurs
+      }
+    }
+
+    // Line clearing logic
+    function clearLines() {
+      for (let y = ROWS - 1; y >= 0; y--) {
+        if (board[y].every(cell => cell !== 0)) {
+          board.splice(y, 1); // Remove the line
+          board.unshift(Array(COLS).fill(0)); // Add a new empty line at the top
+          return true;
+        }
+      }
+      return false;
+    }
+  });
+
+</script>
+
+<!-- Custom GSAP Animations -->
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Animate controls box and canvas with fade-in effect
+    gsap.from(".gsap-animate", {
+      duration: 1.5,
+      opacity: 0,
+      y: 50,
+      stagger: 0.3,
+      ease: "power3.out"
+    });
+
+    // Animate hover effect on controls
+    gsap.utils.toArray("#controls ul li").forEach((li) => {
+      li.addEventListener("mouseenter", () => {
+        gsap.to(li, { scale: 1.1, duration: 0.2, backgroundColor: "#444", color: "#fff" });
+      });
+      li.addEventListener("mouseleave", () => {
+        gsap.to(li, { scale: 1, duration: 0.2, backgroundColor: "transparent", color: "#fff" });
+      });
+    });
+
+
+  });
+  // Hero Section Animation
+  gsap.from(".hero-title", { duration: 1.5, y: -50, opacity: 0, ease: "power4.out" });
+  gsap.from(".hero-subtitle", { duration: 1.2, y: 20, opacity: 0, delay: 0.5, ease: "power4.out" });
+  gsap.from(".hero-btn", { duration: 1, scale: 0.5, opacity: 0, delay: 1, ease: "back.out(1.7)" });
+
+  // Fade-in Animation for Sections
+  gsap.from(".fade-in", {
+    scrollTrigger: { trigger: ".fade-in", start: "top 90%" },
+    duration: 1,
+    y: 50,
+    opacity: 0,
+    ease: "power3.out"
+  });
+
+  // Experience Section Animation
+  gsap.from(".experience-card", {
+    scrollTrigger: { trigger: ".experience-card", start: "top 90%" },
+    duration: 1,
+    y: 30,
+    opacity: 0,
+    stagger: 0.2
+  });
+  gsap.from("#tetrisCanvas", {
+    scrollTrigger: { trigger: "#tetrisCanvas", start: "top 90%" },
+    duration: 1.5,
+    scale: 0.8,
+    opacity: 0,
+    ease: "elastic.out(1, 0.5)"
+  });
+
+
+
+  // Skills Hover Effect
+  gsap.utils.toArray(".skill-box").forEach((box) => {
+    box.addEventListener("mouseenter", () => gsap.to(box, { scale: 1.1, duration: 0.3 }));
+    box.addEventListener("mouseleave", () => gsap.to(box, { scale: 1, duration: 0.3 }));
+  });
+</script>
+</body>
+</html>

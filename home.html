@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Atlas Vasquez Spillers" />
+    <meta name="author" content="Your Name" />
+    <title>Game Developer - Portfolio</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Custom Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/ScrollTrigger.min.js"></script>
+</head>
+<body class="d-flex flex-column h-100 bg-light">
+<main class="flex-shrink-0">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+        <div class="container px-5">
+            <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Atlas Vasquez Spillers</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Games</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="py-5">
+        <div class="container px-5 pb-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-xxl-6">
+                    <div class="text-center text-xxl-start">
+                        <div class="badge bg-gradient-primary-to-secondary text-white mb-4">
+                            <div class="text-uppercase">Game Design &middot; Development &middot; Music</div>
+                        </div>
+                        <h1 class="display-3 fw-bolder mb-5">
+                            <span class="text-gradient d-inline">Building Immersive Worlds</span>
+                        </h1>
+                        <p class="lead fw-normal text-muted mb-4">I create experiences players connect with through sound, storytelling, and music.</p>
+                        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
+                            <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="resume.html">Resume</a>
+                            <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="projects.html">My Games</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-6">
+                    <div class="d-flex justify-content-center mt-5 mt-xxl-0">
+                        <div class="profile bg-gradient-primary-to-secondary">
+                            <img class="profile-img" src="assets/AtlasSpillers_Portrait.png" alt="Atlas Spillers Portrait"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section-->
+    <section class="bg-light py-5">
+        <div class="container px-5 my-5">
+            <div class="row gx-5">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-3">
+                        <i class="bi bi-controller"></i>
+                    </div>
+                    <h2 class="h4 fw-bolder">Game Development</h2>
+                    <p>Developing games with Unity, Unreal Engine, and Godot.</p>
+                </div>
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-3">
+                        <i class="bi bi-music-note"></i>
+                    </div>
+                    <h2 class="h4 fw-bolder">Composition</h2>
+                    <p>Creating stunning tracks to alter the way we connect with games.</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-3">
+                        <i class="bi bi-joystick"></i>
+                    </div>
+                    <h2 class="h4 fw-bolder">Gameplay Mechanics</h2>
+                    <p>Designing interactive and engaging gameplay systems that keep players hooked.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Latest Game Section -->
+<section class="py-5 text-center bg-white">
+    <div class="container px-5">
+        <h2 class="fw-bolder mb-4">Latest Game</h2>
+        <div id="gameContainer" class="d-flex justify-content-center">
+            <iframe src="webgl-build/index.html" width="960" height="600" frameborder="0" scrolling="no" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- Footer-->
+<footer class="bg-white py-4 mt-auto">
+    <div class="container px-5">
+        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+            <div class="col-auto"><div class="small m-0">Copyright &copy; Atlas Spillers 2025</div></div>
+            <div class="col-auto">
+                <a class="small" href="#!">Privacy</a>
+                <span class="mx-1">&middot;</span>
+                <a class="small" href="#!">Terms</a>
+                <span class="mx-1">&middot;</span>
+                <a class="small" href="#!">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<!-- Animation Script -->
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero Section Animation
+    gsap.from(".text-gradient", {
+        duration: 1.5,
+        y: 100,
+        opacity: 0,
+        ease: "power4.out"
+    });
+
+    gsap.from(".btn", {
+        duration: 1,
+        scale: 0.5,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "back.out(1.7)"
+    });
+
+    // Feature Cards Animation
+    gsap.from(".feature", {
+        scrollTrigger: {
+            trigger: ".bg-light",
+            start: "top center"
+        },
+        duration: 1,
+        scale: 0,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "elastic.out(1, 0.5)"
+    });
+
+    gsap.from(".col-lg-4 h2, .col-lg-4 p", {
+        scrollTrigger: {
+            trigger: ".bg-light",
+            start: "top center"
+        },
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        stagger: 0.1
+    });
+
+    // Profile Image Animation
+    gsap.from(".profile-img", {
+        duration: 1.5,
+        scale: 0.8,
+        opacity: 0,
+        rotation: 15,
+        ease: "power3.out"
+    });
+</script>
+</body>
+</html>
