@@ -1,0 +1,6 @@
+exclude:
+  - portfolio/node_modules
+  - node_modules
+  - Gemfile
+  - Gemfile.lock
+  - README.md
