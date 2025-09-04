@@ -136,6 +136,22 @@ h2, .h2 {
     font-size: 2rem;
   }
 }
+.custom-audio-player {
+    color: #8f98f9;
+
+
+}
+#playPauseBtn {
+    color: #8f98f9
+
+}
+#progressBar {
+    color: #8f98f9
+
+}
+#progress {
+    color: #8f98f9
+}
 
 h3, .h3 {
   font-size: calc(1.3rem + 0.6vw);
